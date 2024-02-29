@@ -1,0 +1,54 @@
+{% extends "core/base.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<div class="w-1/2 p-6 mx-20 my-6">
+    <h1 class="mb-6 text-3xl font-semibold">Edit Item</h1>
+  
+    <form action="" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+  
+      <div class="mb-3 rounded-xl">
+        <label class="inline-block mb-2 text-xl">Name</label><br />
+        {{form.name}}
+      </div>
+  
+      <div class="mb-3 rounded-xl">
+        <label class="inline-block mb-2 text-xl">Description</label><br />
+        {{form.description}}
+      </div>
+  
+      <div class="mb-3 rounded-xl">
+        <label class="inline-block mb-2 text-xl">Price</label><br />
+        {{form.price}}
+      </div>
+  
+      <div class="mb-3 rounded-xl">
+        <label class="inline-block mb-2 text-xl">Image</label><br />
+        {{form.image}}
+      </div>
+      
+      <div class="mb-3 rounded-xl">
+        <label class="inline-block mb-2 text-xl">Is_sold</label><br />
+        {{form.is_sold}}
+      </div>
+
+      {% if form.errors or form.non_field_errors %}
+      <div class="mb-3 p-6 bg-red-100 rounded-xl">
+        {% for field in form %} {{field.errors}} {% endfor %}
+        {{form.non_field_errors}}
+      </div>
+      {% endif %}
+      <button
+        class="py-4 px-8 text-lg bg-teal-500 hover:bg-teal-700 text-white rounded-xl"
+      >
+        Submit
+      </button>
+    </form>
+  </div>
+
+
+
+
+{% endblock %}

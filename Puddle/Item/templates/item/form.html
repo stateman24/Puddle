@@ -1,0 +1,52 @@
+{% extends "core/base.html" %} 
+
+{% block title %}Add Item{% endblock %} 
+
+{% block content %}
+<div class="w-1/2 p-6 mx-20 my-6">
+  <h1 class="mb-6 text-3xl font-semibold">New Item</h1>
+  <a href="{% url "Item:newcat" %}" class='py-4 px-8 text-lg bg-teal-500 hover:bg-teal-700 text-white rounded-xl'>Add New Category</a>
+ 
+  <form action="" method="post" enctype="multipart/form-data" class='mt-6'>
+    {% csrf_token %}
+
+    <div class="mb-3 rounded-xl">
+      <label class="inline-block mb-2 text-xl">Category</label><br />
+      {{form.category}}
+    </div>
+
+    <div class="mb-3 rounded-xl">
+      <label class="inline-block mb-2 text-xl">Name</label><br />
+      {{form.name}}
+    </div>
+
+    <div class="mb-3 rounded-xl">
+      <label class="inline-block mb-2 text-xl">Description</label><br />
+      {{form.description}}
+    </div>
+
+    <div class="mb-3 rounded-xl">
+      <label class="inline-block mb-2 text-xl">Price</label><br />
+      {{form.price}}
+    </div>
+
+    <div class="mb-3 rounded-xl">
+      <label class="inline-block mb-2 text-xl">Image</label><br />
+      {{form.image}}
+    </div>
+
+    {% if form.errors or form.non_field_errors %}
+    <div class="mb-3 p-6 bg-red-100 rounded-xl">
+      {% for field in form %} {{field.errors}} {% endfor %}
+      {{form.non_field_errors}}
+    </div>
+    {% endif %}
+    <button
+      class="py-4 px-8 text-lg bg-teal-500 hover:bg-teal-700 text-white rounded-xl"
+    >
+      Submit
+    </button>
+  </form>
+</div>
+
+{% endblock %}
